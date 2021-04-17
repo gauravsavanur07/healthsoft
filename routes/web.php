@@ -37,17 +37,20 @@ Route::get('/new-appointment/{doctorId}/{date}','FrontendController@show')->name
 	})->name('doctor.delete'); 
 	
 
-Route::resource('doctor','App\Http\Controllers\DoctorController'); 
-	
-Route::resource('register','App\Http\Controllers\RegisterController');
+Route::resource('doctor','DoctorController'); 
+Route::resource('register','RegisterController');
 
-Route::resource('login','App\Http\Controllers\LoginController');
+Route::get('/home'.'HomeController@index' )->name('home');
+
+	
+
+
 
 
 
 Route ::get('/dashboard', function (){
     return view('dashboard');
-}); 
+})->name('dashboard'); 
 Route::resource('logout','LoginController'); 
 
 Route ::get('/logout', function (){
@@ -57,14 +60,15 @@ Route ::get('/logout', function (){
 Route ::get('/login', function (){
     return view('auth.passwords.login');
 })->name('login');
+Route ::get('/register', function (){
+    return view('auth.passwords.register');
+})->name('register');
 
 Route ::get('/', function (){
     return view('admin.layouts.app');
 });
 
-Route ::get('/register', function (){
-    return view('auth.passwords.register');
-})->name('register');
+
 
 
 
@@ -96,9 +100,5 @@ Route::group(['middleware'=>['auth','doctor']],function(){
 
 
 });
-
-// Route::post('/api/doctors','FrontendController@getDoctors');
-// Route::get('/api/doctors/today','FrontendController@doctorToday');
-
 
 

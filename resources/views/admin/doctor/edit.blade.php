@@ -108,35 +108,7 @@
 			</div>
 
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Specialist</label>
-                        <select name="department" class="form-control">
-                          
-
-                       
-
-
-
-                            @foreach(App\Department::all() as $department)
-                            <option value="{{$department->department}}" @if($user->department==$department->department)selected @endif>{{$department->department}}</option> 
-                            @endforeach
-
-
-                         
-
-                        </select>
-
-
-
-                         @error('department')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        
-                    </div>
-                </div>
+            
 
                 <div class="col-md-6">
                     <div class="form-group">
@@ -167,23 +139,7 @@
                                 @enderror
                     </div>
                 </div>
-                    <div class="col-md-6">
-                        <label>Role</label>
-                        <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
-                            <option value="">Please select role</option>
-                            @foreach(App\Role::where('name','!=','patient')->get() as $role)
-          <option value="{{$role->id}}"@if($user->role_id==$role->id)selected @endif>{{$role->name}}</option>
-                            @endforeach
-                            
-                        </select>
-                         @error('role_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                    </div>
-                </div>
-                
+                    
             
             
            

@@ -113,9 +113,13 @@
                         <select name="department" class="form-control">
                             <option value="">Please select</option>
 
-                            @foreach(App\Department::all() as $d)
-                                <option value="{{$d->department}}">{{$d->department}}</option>
-                            @endforeach
+                       
+                                <option value="cardiology">Cardiology</option>
+                                <option value="urology">Urology</option>
+                                <option value="Neurosurgeon">Neurosurgeon</option>
+                                <option value="Gyencology">Gyencology</option>
+
+                          
                         </select>
 
 
@@ -157,23 +161,9 @@
                                 @enderror
                     </div>
                 </div>
-                    <div class="col-md-6">
-                        <label>Role</label>
-                        <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
-                            <option value="">Please select role</option>
-                            @foreach(App\Role::where('name','!=','patient')->get() as $role)
-                                <option value="{{$role->id}}">{{$role->name}}</option>
-                            @endforeach
-                            
-                        </select>
-                         @error('role_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                    </div>
-                </div>
-                
+                <div class="col-md-6">
+                  
+              
             
             
            
@@ -197,6 +187,7 @@
 			</div>
 		</div>
 	</div>
+    </div>
 </div>
 
 

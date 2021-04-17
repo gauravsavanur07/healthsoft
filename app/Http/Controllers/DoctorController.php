@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 class DoctorController extends Controller
 {
     /**
@@ -13,8 +13,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-    
-        return view('admin.doctor.index');
+        $users  = User::get();
+        return view('admin.doctor.index',compact('users'));
     }
 
     /**
@@ -57,8 +57,8 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-    
-        return view('admin.doctor.delete');
+        $user =User::find($id);
+        return view('admin.doctor.delete',compact('user'));
     }
 
     /**
@@ -69,7 +69,8 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.doctor.edit');
+        $user =User::find($id);
+        return view('admin.doctor.edit',compact('user'));
     }
 
     /**
@@ -109,14 +110,8 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-       if(auth()->user()->id == $id){
-            abort(401);
-       }
+       
        $user = User::find($id);
-       $userDelete = $user->delete();
-       if($userDelete){
-        unlink(public_path('images/'.$user->image));
-       }
         return redirect()->route('doctor.index')->with('message','Doctor deleted successfully');
 
     }
@@ -132,7 +127,6 @@ class DoctorController extends Controller
             'department'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'required|mimes:jpeg,jpg,png',
-            'role_id'=>'required',
             'description'=>'required'
 
        ]);
@@ -148,7 +142,6 @@ class DoctorController extends Controller
             'department'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'mimes:jpeg,jpg,png',
-            'role_id'=>'required',
             'description'=>'required'
 
        ]);

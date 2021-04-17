@@ -23,14 +23,13 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
 
-
-            $table->integer('roleid');
-            $table->integer('address')-> nullable();
-            $table->integer('phone_number')-> nullable();
-            $table->integer('department')-> nullable();
-            $table->integer('image')-> nullable();
-            $table->integer('education')-> nullable();
-            $table->integer('description')-> nullable();
+            $table->string('gender');
+            $table->string('address')-> nullable();
+            $table->string('phone_number')-> nullable();
+            $table->string('department')-> nullable();
+            $table->string('image')-> nullable();
+            $table->string('education')-> nullable();
+            $table->string('description')-> nullable();
 
 
 

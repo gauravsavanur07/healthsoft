@@ -40,7 +40,7 @@
     <div class="card">
         <div class="card-header"><h3>Data Table</h3>
 
-      
+        </div>
         <div class="card-body">
             <table id="data_table" class="table">
                 <thead>
@@ -56,16 +56,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
-                   
-                   
+                    @if(count($users)>0)
+                    @foreach($users as $user)
+                    <tr>
+                        <td>{{$user->name}}</td>
+                        <td><img src="{{asset('images')}}/{{$user->image}}" class="table-user-thumb" alt=""></td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->address}}</td>
+                        <td>{{$user->phone_number}}</td>
+                        <td>{{$user->department}}</td>
                         <td>
                             <div class="table-actions">
-                                <a href="#" data-toggle="modal" >
+                                <a href="#" data-toggle="modal" data-target="#exampleModal{{$user->id}}">
                                 <i class="ik ik-eye"></i>
                                 </a>
-                                <a href=""><i class="ik ik-edit-2"></i></a>
-                
+                                <a href="{{route('doctor.edit',[$user->id])}}"><i class="ik ik-edit-2"></i></a>
+                                
+                                <a href="{{route('doctor.show',[$user->id])}}">
+                                    <i class="ik ik-trash-2"></i>
+                                </a>
+
                             </div>
                         </td>
                         <td>x</td>
@@ -77,9 +87,11 @@
 
 
 
-          
+                    @endforeach
                    
-                  
+                    @else 
+                    <td>No user to display</td>
+                    @endif
                 
                 </tbody>
             </table>
